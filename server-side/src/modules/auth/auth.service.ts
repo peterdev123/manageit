@@ -8,12 +8,15 @@ import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
 import { LoginDto } from './dto/login.dto';
 import { CreateUserDto } from '../users/dto/create-user.dto';
+import { BudgetService } from '../../budget/budget.service';
+import { Types } from 'mongoose';
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
+    private budgetService: BudgetService,
   ) {}
 
   async signup(createUserDto: CreateUserDto) {
@@ -25,6 +28,11 @@ export class AuthService {
     }
 
     const user = await this.usersService.create(createUserDto);
+
+    await this.budgetService.create({
+      userId: user._id.toString(),
+      income: 0,
+    });
 
     const payload = { email: user.email, sub: user._id };
     return {
