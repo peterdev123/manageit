@@ -13,10 +13,14 @@ export class BudgetService {
   ) {}
 
   async create(createBudgetDto: CreateBudgetDto): Promise<Budget> {
-    await this.budgetModel.updateMany(
-      { userId: createBudgetDto.userId, isActive: true },
-      { isActive: false },
-    );
+    const existingBudget = await this.budgetModel
+      .findOne({ userId: createBudgetDto.userId, isActive: true })
+      .exec();
+
+    if (existingBudget) {
+      existingBudget.income = createBudgetDto.income;
+      return existingBudget.save();
+    }
 
     const createdBudget = new this.budgetModel(createBudgetDto);
     return createdBudget.save();
