@@ -41,7 +41,7 @@ ManageIt is a modern budget management application that helps users manage their
 ### Frontend
 - React with TypeScript
 - Tailwind CSS for styling
-- Vite for build tooling
+- NextJS for build tooling
 - React Router for navigation
 - React Query for data management
 
