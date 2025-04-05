@@ -131,11 +131,11 @@ export default function DashboardComponent() {
   // }, [transactions]);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <nav className="bg-white shadow-sm sticky top-0 z-50">
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-sky-50 to-emerald-50 animate-gradient-x bg-[length:200%_200%]">
+      <nav className="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-blue-600 flex items-center gap-2">
+            <h1 className="text-2xl font-bold text-blue-600 flex items-center gap-2 hover:scale-105 transition-transform">
               <span className="text-blue-800">💼</span> ManageIt
             </h1>
             <button
@@ -143,7 +143,7 @@ export default function DashboardComponent() {
                 localStorage.removeItem("token");
                 router.push("/auth/login");
               }}
-              className="px-6 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium border-2 border-transparent hover:border-blue-600 cursor-pointer"
+              className="px-6 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300 font-medium border-2 border-transparent hover:border-blue-600 cursor-pointer hover:shadow-md"
             >
               Logout
             </button>
@@ -154,44 +154,36 @@ export default function DashboardComponent() {
       {error && (
         <div className="max-w-7xl mx-auto mt-4 px-4">
           <div
-            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+            className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-r relative animate-fade-in"
             role="alert"
           >
             <span className="block sm:inline">{error}</span>
-            <span
-              className="absolute top-0 bottom-0 right-0 px-4 py-3"
+            <button
+              className="absolute top-0 right-0 p-4 hover:text-red-800"
               onClick={() => setError("")}
             >
-              <svg
-                className="fill-current h-6 w-6 text-red-500"
-                role="button"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <title>Close</title>
-                <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
-              </svg>
-            </span>
+              ×
+            </button>
           </div>
         </div>
       )}
 
       <div className="max-w-7xl mx-auto mt-8 px-4">
-        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 w-full sm:w-fit mx-auto flex flex-col sm:flex-row items-center gap-3">
-          <span className="text-gray-700 font-medium flex items-center gap-2">
-            <span className="text-green-600">💵</span> Monthly Income:
+        <div className="bg-white rounded-xl shadow-lg p-6 w-full sm:w-fit mx-auto flex flex-col sm:flex-row items-center gap-4 hover:shadow-xl transition-shadow duration-300">
+          <span className="text-gray-700 font-medium flex items-center gap-2 text-lg">
+            <span className="text-green-600 animate-bounce">💵</span> Monthly Income:
           </span>
-          <div className="flex w-full sm:w-auto gap-2">
+          <div className="flex w-full sm:w-auto gap-3">
             <input
               type="number"
               placeholder="Enter amount"
-              className="w-full sm:w-48 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full sm:w-48 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
               value={income || ""}
               onChange={(e) => setIncome(Number(e.target.value))}
             />
             <button
               onClick={handleUpdateIncome}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium whitespace-nowrap cursor-pointer"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 font-medium whitespace-nowrap cursor-pointer hover:shadow-lg transform hover:-translate-y-0.5"
             >
               Update
             </button>
@@ -203,9 +195,9 @@ export default function DashboardComponent() {
         {budget && (
           <>
             {/* Income Summary */}
-            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8 mb-8">
-              <h2 className="text-xl sm:text-2xl font-bold mb-6 text-gray-800 flex items-center gap-2">
-                <span className="text-green-600">💰</span> Income:{" "}
+            <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 mb-8 hover:shadow-xl transition-all duration-300">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-gray-800 flex items-center gap-3 border-b pb-4">
+                <span className="text-green-600 animate-pulse">💰</span> Income Summary:{" "}
                 <span className="text-blue-600">
                   ₱{income.toLocaleString()}
                 </span>
@@ -256,15 +248,15 @@ export default function DashboardComponent() {
             </div>
 
             {/* Transaction Sections */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {[
-                { category: "Needs", icon: "🏠" },
-                { category: "Wants", icon: "🎮" },
-                { category: "Savings", icon: "💎" },
-              ].map(({ category, icon }) => (
+                { category: "Needs", icon: "🏠", color: "blue" },
+                { category: "Wants", icon: "🎮", color: "green" },
+                { category: "Savings", icon: "💎", color: "purple" },
+              ].map(({ category, icon, color }) => (
                 <div
                   key={category}
-                  className="bg-white rounded-lg shadow-lg p-4 sm:p-6 hover:shadow-xl transition-shadow duration-200 flex flex-col h-[500px]"
+                  className={`bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 flex flex-col h-[500px] transform hover:-translate-y-1`}
                 >
                   <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 pb-2 border-b text-gray-800 flex items-center gap-2">
                     <span>{icon}</span> {category} -{" "}

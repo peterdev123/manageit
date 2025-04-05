@@ -4,20 +4,20 @@ export default function HomeComponent() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <nav className="py-4 px-6 border-b sticky top-0 bg-white/80 backdrop-blur-sm z-50">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
           <h2 className="text-2xl font-bold text-blue-600 flex items-center gap-2">
             <span className="text-blue-800">💼</span> ManageIt
           </h2>
-          <div className="flex gap-6">
+          <div className="flex gap-3 w-full sm:w-auto justify-center">
             <a
               href="/auth/login"
-              className="px-6 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium border-2 border-transparent hover:border-blue-600"
+              className="px-6 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 font-medium border-2 border-transparent hover:border-blue-600 w-full sm:w-auto text-center"
             >
               Login
             </a>
             <a
               href="/auth/signup"
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium w-full sm:w-auto text-center"
             >
               Sign Up
             </a>
