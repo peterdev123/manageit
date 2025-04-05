@@ -1,5 +1,7 @@
 "use client";
 
+import Image from 'next/image';
+
 export default function HomeComponent() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -56,10 +58,13 @@ export default function HomeComponent() {
           </div>
           <div className="hidden md:block">
             <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img
+              <Image
                 src="/assets/image/hero.jpg"
                 alt="Budget Management"
+                width={800}
+                height={600}
                 className="w-full h-full object-cover"
+                priority
               />
             </div>
           </div>

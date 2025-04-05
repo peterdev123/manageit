@@ -24,16 +24,6 @@ export default function DashboardComponent() {
   const router = useRouter();
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      router.push("/auth/login");
-      return;
-    }
-    fetchBudget();
-    fetchTransactions();
-  }, []);
-
   const fetchTransactions = async () => {
     try {
       const categories = ["needs", "wants", "savings"];
@@ -66,6 +56,16 @@ export default function DashboardComponent() {
       setError("Failed to fetch budget");
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/auth/login");
+      return;
+    }
+    fetchBudget();
+    fetchTransactions();
+  }, [router]); // Remove fetchBudget and fetchTransactions from dependencies
 
   const handleUpdateIncome = async () => {
     try {

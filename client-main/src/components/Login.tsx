@@ -85,11 +85,8 @@ export default function LoginComponent() {
         </form>
 
         <p className="mt-6 text-center text-gray-600">
-          Don't have an account?{" "}
-          <a
-            href="/auth/signup"
-            className="text-blue-600 hover:text-blue-700 font-medium hover:underline transition-colors"
-          >
+          Don&apos;t have an account?{" "}
+          <a href="/auth/signup" className="text-blue-600 hover:text-blue-700 font-medium hover:underline transition-colors">
             Sign up
           </a>
         </p>
