@@ -31,7 +31,7 @@ ManageIt is a modern budget management application that helps users manage their
   - Visual budget breakdowns
   - Monthly progress reports
  
-## LINK
+## LIVE SITE
 [Check out the live site here!](https://manageit-117g.vercel.app)
 
 ## UI Overview
