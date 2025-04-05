@@ -4,6 +4,8 @@ if (!API_URL) {
   throw new Error('NEXT_PUBLIC_API_URL environment variable is not set');
 }
 
+console.log('API URL:', API_URL); // Temporary log to verify URL
+
 export const authService = {
   async login(email: string, password: string) {
     try {
